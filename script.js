@@ -1,8 +1,8 @@
-let url=`https://api.covid19api.com/summary`
+// let url=`https://api.covid19api.com/summary`
 
 updateMap()
 async function updateMap(){
-    let data=await fetch(url)
+    let data=await fetch("/data.json")
     let res=await data.json()
     // console.log(res.Countries)
     let list=res.Countries
