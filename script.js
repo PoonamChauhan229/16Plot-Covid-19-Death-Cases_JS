@@ -4,15 +4,16 @@ updateMap()
 async function updateMap(){
     let data=await fetch("/data.json")
     let res=await data.json()
-    // console.log(res.Countries)
-    let list=res.Countries
+    console.log(res.data)
+    console.log(res.data)
+    let list=res.data
 
     list.map(async function(element){
         // console.log(element)
         // console.log(element.NewConfirmed)
         // console.log(element.Country)
         console.log(`Loading`)
-        let data1=await fetch(`https://restcountries.com/v3.1/name/${element.Country}`)
+        let data1=await fetch(`https://restcountries.com/v3.1/name/${element.country}`)
         let res1=await data1.json()
         // console.log(res1[0].latlng)
 
@@ -20,7 +21,7 @@ async function updateMap(){
         let longitude=res1[0].latlng[1]
 
 
-        let cases=element.TotalDeaths
+        let cases=element.dead
 
         if(cases>255){
             color="rgb(255,0,0)"
@@ -29,7 +30,7 @@ async function updateMap(){
             color="rgb(168,23,62)"
         } 
         else{
-            color=`rgb(${element.TotalDeaths},0,0)`
+            color=`rgb(${element.dead},0,0)`
         }
         // Mark on the map
 
